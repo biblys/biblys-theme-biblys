@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>{PAGE_TITLE}</title>
+
+		{CSS_CALLS}
+		<link rel="apple-touch-icon" href="/biblys/img/apple-touch-icon.png" />
+
+		{OPENGRAPH}
+		{MATOMO}
+	</head>
+	<body>
+		<div id="wrapper">
+			<header id="header">
+				<a href="/"><img src="/biblys/img/biblys.png" id="logo" alt="Biblys"></a>
+				<h1>Biblys</h1>
+			</header>
+			<nav id="menu">
+				<ul>
+					<li><a href="/blog/"><span>Blog</span></a></li>
+					<li><a href="/pages/doc_index"><span>Documentation</span></a></li>
+					<li><a href="/pages/tarifs"><span>Tarifs</span></a></li>
+					<li><a href="/pages/open-source"><span>Open source</span></a></li>
+					<li><a href="/contact/"><span>Contact</span></a></li>
+                    <li>
+                        <a href="https://www.facebook.com/biblys.fr"><i class="fa fa-facebook"></i></a> &nbsp;
+                        <a href="https://twitter.com/Biblys"><i class="fa fa-twitter"></i></a> &nbsp;
+                        <a href="/pages/newsletter-biblys"><i class="fa fa-envelope-o"></i></a>
+                    </li>
+				</ul>
+			</nav>
+			<section>
+				{PAGE_CONTENT}
+			</section>
+			<footer class="site-footer">
+			    <a href="/pages/mentions-legales">mentions légales</a>
+			    -
+			    <a href="https://status.biblys.cloud/">statut des services</a>
+			    -
+			    <a href="/biblys/changelog">mises à jour</a>
+			</footer>
+		</div>
+        {JS_CALLS}
+        {ANALYTICS_TRACKER}
+	</body>
+</html>
