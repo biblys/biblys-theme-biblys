@@ -164,7 +164,12 @@ a:hover {
   line-height: 1.5em;
 }
 
-.customers img {
+.customers .customer {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.customers .customer img {
   height: auto;
   max-width: 100%;
 }
@@ -237,4 +242,16 @@ article.post .thumbnail {
 
 .page footer {
   display: none;
+}
+
+@media (min-width: 768px) {
+  .home-page .customers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .home-page .customers .customer {
+    width: 26%;
+  }
 }
