@@ -5,13 +5,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>{PAGE_TITLE}</title>
+    <title>
+      {% set titleBlock = block("title") %}
+      {% if titleBlock is not empty %}
+        {% block title %}{% endblock %} |
+      {% endif %}
+      {{ app.site.title }}
+    </title>
 
-    {CSS_CALLS}
+    {# biblys assets #}
+    {% include "layout:_assets_css.html.twig" %}
+
     <link rel="apple-touch-icon" href="/theme/apple-touch-icon.png" />
 
-    {OPENGRAPH} {MATOMO}
-    <link rel="stylesheet" href="/theme/styles.css?{ASSETS_VERSION}" />
+    <!-- Matomo -->
+    <script type="text/javascript">
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://analytics.biblys.cloud/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Code -->
+    <link rel="stylesheet" href="/theme/styles.css?{{ app.site.getOpt('assets_version') }}" />
   </head>
   <body>
     <div id="wrapper">
@@ -44,7 +66,7 @@
         </ul>
       </nav>
       <section>
-        {PAGE_CONTENT}
+        {% block main %}{% endblock %}
       </section>
       <footer class="site-footer">
         <a href="/pages/mentions-legales">mentions légales</a>
@@ -54,6 +76,8 @@
         <a href="/biblys/changelog">mises à jour</a>
       </footer>
     </div>
-    {JS_CALLS} {ANALYTICS_TRACKER} {AXYS_MENU}
+
+    {{ app.axysMenu|raw }}
+    {% include "layout:_assets_js.html.twig" %}
   </body>
 </html>

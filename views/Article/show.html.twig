@@ -1,0 +1,49 @@
+{% extends "layout:base.html.twig" %}
+
+{% block title %}
+  {{  article.title }}
+{% endblock %}
+
+{% block main %}
+  <div class="row">
+    <div class="col-md-8">
+      <h1 class="article-title">{{ article.title }}</h1>
+
+      <h2 class="article-authors">{{ article.authors }}</h2>
+
+      {% if article.has('ean') %}
+        <p>
+          EAN : {{ article.ean }}<br>
+          ISBN : {{ article.isbn }}
+        </p>
+      {% endif %}
+
+      {% for item in article.getAvailableItems() %}
+        {{ item.getCartButton('Ajouter au panier')|raw }}
+        {{ item.selling_price|currency(true)|raw }}
+      {% endfor %}
+    </div>
+    <div class="col-md-4 text-center">
+      {% if article.hasCover() %}
+        {{ article.getCoverTag({ class:"cover", size:"w300",rel: "lightbox" })|raw }}
+      {% endif %}
+    </div>
+  </div>
+
+  {% if article.has('summary') %}
+
+    <div class="article-summary">
+      {{ article.summary|raw }}
+    </div>
+
+  {% endif %}
+
+  {% if app.user.isAdmin() %}
+    <div class="admin">
+      <p>Article n° {{ article.id }}</p>
+      <p><a href="/pages/adm_article?id={{ article.id }}">modifier</a></p>
+      <p><a href="/pages/adm_stocks?article_id={{ article.id }}">stock</a></p>
+      <p><a href="/pages/adm_stock?add={{ article.id }}">ajouter</a></p>
+    </div>
+  {% endif %}
+{% endblock %}
