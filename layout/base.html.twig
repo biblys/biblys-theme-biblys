@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/theme/styles.css?{{ app.site.getOpt('assets_version') }}" />
   </head>
   <body>
+    {% include "layout:_overall_menu.html.twig" %}
     <div id="wrapper">
       <header id="header">
         <a href="/"><img src="/theme/biblys.png" id="logo" alt="Biblys"/></a>
@@ -64,7 +65,6 @@
       </footer>
     </div>
 
-    {{ app.axysMenu|raw }}
     {% include "layout:_assets_js.html.twig" %}
   </body>
 </html>
